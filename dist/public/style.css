@@ -1,0 +1,695 @@
+/* Bootstrap 5.3.3 styles, dont modify (?) */
+:root,
+[data-bs-theme=light] {
+    --custom-bs-blue: #0d6efd;
+    --custom-bs-indigo: #6610f2;
+    --custom-bs-purple: #6f42c1;
+    --custom-bs-pink: #d63384;
+    --custom-bs-red: #dc3545;
+    --custom-bs-orange: #fd7e14;
+    --custom-bs-yellow: #ffc107;
+    --custom-bs-green: #198754;
+    --custom-bs-teal: #20c997;
+    --custom-bs-cyan: #0dcaf0;
+    --custom-bs-black: #000;
+    --custom-bs-white: #fff;
+    --custom-bs-gray: #6c757d;
+    --custom-bs-gray-dark: #343a40;
+    --custom-bs-gray-100: #f8f9fa;
+    --custom-bs-gray-200: #e9ecef;
+    --custom-bs-gray-300: #dee2e6;
+    --custom-bs-gray-400: #ced4da;
+    --custom-bs-gray-500: #adb5bd;
+    --custom-bs-gray-600: #6c757d;
+    --custom-bs-gray-700: #495057;
+    --custom-bs-gray-800: #343a40;
+    --custom-bs-gray-900: #212529;
+    --custom-bs-primary: #0d6efd;
+    --custom-bs-secondary: #6c757d;
+    --custom-bs-success: #198754;
+    --custom-bs-info: #0dcaf0;
+    --custom-bs-warning: #ffc107;
+    --custom-bs-danger: #dc3545;
+    --custom-bs-light: #f8f9fa;
+    --custom-bs-dark: #212529;
+    --custom-bs-primary-rgb: 13, 110, 253;
+    --custom-bs-secondary-rgb: 108, 117, 125;
+    --custom-bs-success-rgb: 25, 135, 84;
+    --custom-bs-info-rgb: 13, 202, 240;
+    --custom-bs-warning-rgb: 255, 193, 7;
+    --custom-bs-danger-rgb: 220, 53, 69;
+    --custom-bs-light-rgb: 248, 249, 250;
+    --custom-bs-dark-rgb: 33, 37, 41;
+    --custom-bs-primary-text-emphasis: #052c65;
+    --custom-bs-secondary-text-emphasis: #2b2f32;
+    --custom-bs-success-text-emphasis: #0a3622;
+    --custom-bs-info-text-emphasis: #055160;
+    --custom-bs-warning-text-emphasis: #664d03;
+    --custom-bs-danger-text-emphasis: #58151c;
+    --custom-bs-light-text-emphasis: #495057;
+    --custom-bs-dark-text-emphasis: #495057;
+    --custom-bs-primary-bg-subtle: #cfe2ff;
+    --custom-bs-secondary-bg-subtle: #e2e3e5;
+    --custom-bs-success-bg-subtle: #d1e7dd;
+    --custom-bs-info-bg-subtle: #cff4fc;
+    --custom-bs-warning-bg-subtle: #fff3cd;
+    --custom-bs-danger-bg-subtle: #f8d7da;
+    --custom-bs-light-bg-subtle: #fcfcfd;
+    --custom-bs-dark-bg-subtle: #ced4da;
+    --custom-bs-primary-border-subtle: #9ec5fe;
+    --custom-bs-secondary-border-subtle: #c4c8cb;
+    --custom-bs-success-border-subtle: #a3cfbb;
+    --custom-bs-info-border-subtle: #9eeaf9;
+    --custom-bs-warning-border-subtle: #ffe69c;
+    --custom-bs-danger-border-subtle: #f1aeb5;
+    --custom-bs-light-border-subtle: #e9ecef;
+    --custom-bs-dark-border-subtle: #adb5bd;
+    --custom-bs-white-rgb: 255, 255, 255;
+    --custom-bs-black-rgb: 0, 0, 0;
+    --custom-bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --custom-bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --custom-bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --custom-bs-body-font-family: var(--custom-bs-font-sans-serif);
+    --custom-bs-body-font-size: 1rem;
+    --custom-bs-body-font-weight: 400;
+    --custom-bs-body-line-height: 1.5;
+    --custom-bs-body-color: #212529;
+    --custom-bs-body-color-rgb: 33, 37, 41;
+    --custom-bs-body-bg: #fff;
+    --custom-bs-body-bg-rgb: 255, 255, 255;
+    --custom-bs-emphasis-color: #000;
+    --custom-bs-emphasis-color-rgb: 0, 0, 0;
+    --custom-bs-secondary-color: rgba(33, 37, 41, 0.75);
+    --custom-bs-secondary-color-rgb: 33, 37, 41;
+    --custom-bs-secondary-bg: #e9ecef;
+    --custom-bs-secondary-bg-rgb: 233, 236, 239;
+    --custom-bs-tertiary-color: rgba(33, 37, 41, 0.5);
+    --custom-bs-tertiary-color-rgb: 33, 37, 41;
+    --custom-bs-tertiary-bg: #f8f9fa;
+    --custom-bs-tertiary-bg-rgb: 248, 249, 250;
+    --custom-bs-heading-color: inherit;
+    --custom-bs-link-color: #0d6efd;
+    --custom-bs-link-color-rgb: 13, 110, 253;
+    --custom-bs-link-decoration: underline;
+    --custom-bs-link-hover-color: #0a58ca;
+    --custom-bs-link-hover-color-rgb: 10, 88, 202;
+    --custom-bs-code-color: #d63384;
+    --custom-bs-highlight-color: #212529;
+    --custom-bs-highlight-bg: #fff3cd;
+    --custom-bs-border-width: 1px;
+    --custom-bs-border-style: solid;
+    --custom-bs-border-color: #dee2e6;
+    --custom-bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+    --custom-bs-border-radius: 0.375rem;
+    --custom-bs-border-radius-sm: 0.25rem;
+    --custom-bs-border-radius-lg: 0.5rem;
+    --custom-bs-border-radius-xl: 1rem;
+    --custom-bs-border-radius-xxl: 2rem;
+    --custom-bs-border-radius-2xl: var(--custom-bs-border-radius-xxl);
+    --custom-bs-border-radius-pill: 50rem;
+    --custom-bs-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --custom-bs-box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --custom-bs-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --custom-bs-box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    --custom-bs-focus-ring-width: 0.25rem;
+    --custom-bs-focus-ring-opacity: 0.25;
+    --custom-bs-focus-ring-color: rgba(13, 110, 253, 0.25);
+    --custom-bs-form-valid-color: #198754;
+    --custom-bs-form-valid-border-color: #198754;
+    --custom-bs-form-invalid-color: #dc3545;
+    --custom-bs-form-invalid-border-color: #dc3545;
+}
+
+[data-bs-theme=dark] {
+    color-scheme: dark;
+    --custom-bs-body-color: #dee2e6;
+    --custom-bs-body-color-rgb: 222, 226, 230;
+    --custom-bs-body-bg: #212529;
+    --custom-bs-body-bg-rgb: 33, 37, 41;
+    --custom-bs-emphasis-color: #fff;
+    --custom-bs-emphasis-color-rgb: 255, 255, 255;
+    --custom-bs-secondary-color: rgba(222, 226, 230, 0.75);
+    --custom-bs-secondary-color-rgb: 222, 226, 230;
+    --custom-bs-secondary-bg: #343a40;
+    --custom-bs-secondary-bg-rgb: 52, 58, 64;
+    --custom-bs-tertiary-color: rgba(222, 226, 230, 0.5);
+    --custom-bs-tertiary-color-rgb: 222, 226, 230;
+    --custom-bs-tertiary-bg: #2b3035;
+    --custom-bs-tertiary-bg-rgb: 43, 48, 53;
+    --custom-bs-primary-text-emphasis: #6ea8fe;
+    --custom-bs-secondary-text-emphasis: #a7acb1;
+    --custom-bs-success-text-emphasis: #75b798;
+    --custom-bs-info-text-emphasis: #6edff6;
+    --custom-bs-warning-text-emphasis: #ffda6a;
+    --custom-bs-danger-text-emphasis: #ea868f;
+    --custom-bs-light-text-emphasis: #f8f9fa;
+    --custom-bs-dark-text-emphasis: #dee2e6;
+    --custom-bs-primary-bg-subtle: #031633;
+    --custom-bs-secondary-bg-subtle: #161719;
+    --custom-bs-success-bg-subtle: #051b11;
+    --custom-bs-info-bg-subtle: #032830;
+    --custom-bs-warning-bg-subtle: #332701;
+    --custom-bs-danger-bg-subtle: #2c0b0e;
+    --custom-bs-light-bg-subtle: #343a40;
+    --custom-bs-dark-bg-subtle: #1a1d20;
+    --custom-bs-primary-border-subtle: #084298;
+    --custom-bs-secondary-border-subtle: #41464b;
+    --custom-bs-success-border-subtle: #0f5132;
+    --custom-bs-info-border-subtle: #087990;
+    --custom-bs-warning-border-subtle: #997404;
+    --custom-bs-danger-border-subtle: #842029;
+    --custom-bs-light-border-subtle: #495057;
+    --custom-bs-dark-border-subtle: #343a40;
+    --custom-bs-heading-color: inherit;
+    --custom-bs-link-color: #6ea8fe;
+    --custom-bs-link-hover-color: #8bb9fe;
+    --custom-bs-link-color-rgb: 110, 168, 254;
+    --custom-bs-link-hover-color-rgb: 139, 185, 254;
+    --custom-bs-code-color: #e685b5;
+    --custom-bs-highlight-color: #dee2e6;
+    --custom-bs-highlight-bg: #664d03;
+    --custom-bs-border-color: #495057;
+    --custom-bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+    --custom-bs-form-valid-color: #75b798;
+    --custom-bs-form-valid-border-color: #75b798;
+    --custom-bs-form-invalid-color: #ea868f;
+    --custom-bs-form-invalid-border-color: #ea868f;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.me-3 {
+    margin-right: 1rem !important;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.text-muted {
+    --custom-bs-text-opacity: 1;
+    color: var(--custom-album-text) !important;
+}
+
+small,
+.small {
+    font-size: 0.875em;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.px-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+
+.pt-2 {
+    padding-top: 0.5rem !important;
+}
+
+.pb-3 {
+    padding-bottom: 1rem !important;
+}
+
+.gap-2 {
+    gap: 0.5rem !important;
+}
+
+.gap-3 {
+    gap: 1rem !important;
+}
+
+.ms-auto {
+    margin-left: auto !important;
+}
+
+.btn {
+    --custom-bs-btn-padding-x: 0.75rem;
+    --custom-bs-btn-padding-y: 0.375rem;
+    --custom-bs-btn-font-size: 1rem;
+    --custom-bs-btn-font-weight: 400;
+    --custom-bs-btn-line-height: 1.5;
+    --custom-bs-btn-color: var(--custom-bs-body-color);
+    --custom-bs-btn-bg: transparent;
+    --custom-bs-btn-border-width: var(--custom-bs-border-width);
+    --custom-bs-btn-border-color: transparent;
+    --custom-bs-btn-border-radius: var(--custom-bs-border-radius);
+    --custom-bs-btn-hover-border-color: transparent;
+    --custom-bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    --custom-bs-btn-disabled-opacity: 0.65;
+    --custom-bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--custom-bs-btn-focus-shadow-rgb), .5);
+    display: inline-block;
+    padding: var(--custom-bs-btn-padding-y) var(--custom-bs-btn-padding-x);
+    font-family: var(--custom-bs-btn-font-family);
+    font-size: var(--custom-bs-btn-font-size);
+    font-weight: var(--custom-bs-btn-font-weight);
+    line-height: var(--custom-bs-btn-line-height);
+    color: var(--custom-bs-btn-color);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: var(--custom-bs-btn-border-width) solid var(--custom-bs-btn-border-color);
+    border-radius: var(--custom-bs-btn-border-radius);
+    background-color: var(--custom-bs-btn-bg);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-success {
+    --custom-bs-btn-color: #fff;
+    --custom-bs-btn-bg: #198754;
+    --custom-bs-btn-border-color: #198754;
+    --custom-bs-btn-hover-color: #fff;
+    --custom-bs-btn-hover-bg: #157347;
+    --custom-bs-btn-hover-border-color: #146c43;
+    --custom-bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --custom-bs-btn-active-color: #fff;
+    --custom-bs-btn-active-bg: #146c43;
+    --custom-bs-btn-active-border-color: #13653f;
+    --custom-bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --custom-bs-btn-disabled-color: #fff;
+    --custom-bs-btn-disabled-bg: #198754;
+    --custom-bs-btn-disabled-border-color: #198754;
+}
+
+.btn-sm,
+.btn-group-sm>.btn {
+    --custom-bs-btn-padding-y: 0.25rem;
+    --custom-bs-btn-padding-x: 0.5rem;
+    --custom-bs-btn-font-size: 0.875rem;
+    --custom-bs-btn-border-radius: var(--custom-bs-border-radius-sm);
+}
+
+/* Font awesome 6.7.2 icons */
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-solid-900.woff2') format('woff2'),
+        url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-solid-900.woff') format('woff');
+}
+
+.fas,
+.far,
+.fab,
+.fa-solid,
+.fa-regular,
+.fa-brands,
+.fa {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display, inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+
+.fas::before,
+.far::before,
+.fab::before,
+.fa-solid::before,
+.fa-regular::before,
+.fa-brands::before,
+.fa::before {
+    content: var(--fa);
+}
+
+.fa-classic,
+.fas,
+.fa-solid,
+.far,
+.fa-regular {
+    font-family: 'Font Awesome 6 Free';
+}
+
+.fa-sm {
+    font-size: 0.675em;
+    line-height: 0.07143em;
+    vertical-align: 0.05357em;
+}
+
+.fas,
+.fa-solid {
+    font-weight: 900;
+}
+
+.fa-music::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f001";
+}
+
+.fa-backward-step::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f048";
+}
+
+.fa-forward-step::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f051";
+}
+
+.fa-play::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f04b";
+}
+
+.fa-pause::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f04c";
+}
+
+.fa-volume-up::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f028";
+    color: var(--dark-mode-text-color);
+}
+
+.fa-stop::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f04d";
+}
+
+.fa-forward::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f04e";
+}
+
+.fa-chevron-left::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f053";
+}
+
+.fa-chevron-right::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* 900 for solid icons */
+    content: "\f054";
+}
+
+/* User defined */
+
+/* Purple theme */
+/* :root {
+    --custom-bg-body: rgba(97, 72, 145, 0.65);
+    --custom-bg-player: rgba(97, 72, 145, 0.65);
+    --custom-border-color: rgba(97, 72, 145, 0.65);
+    --custom-shadow-color: rgba(0, 0, 0, 0.15);
+
+    --custom-top-bg: rgba(97, 72, 145, 0.65);
+    --custom-cover-bg: rgba(97, 72, 145, 0.65);
+    --custom-middle-bg: rgba(97, 72, 145, 0.65);
+    --custom-queue-bg: rgba(97, 72, 145, 0.65);
+    --custom-queue-text: rgba(255, 255, 255, 0.65);
+    --custom-album-text: rgba(255, 255, 255, 0.65);
+
+    --custom-progress-bg: rgba(97, 72, 145, 0.65);
+    --custom-progress-fill: rgba(137, 72, 178, 0.65);
+    --custom-time-color: rgba(255, 255, 255, 0.65);
+
+    --custom-button-bg: rgba(97, 72, 145, 0.65);
+    --custom-button-bg-disabled: rgba(97, 72, 145, 0.65);
+    --custom-button-hover: rgba(137, 72, 178, 0.65);
+    --custom-button-icon: rgba(255, 255, 255, 0.65);
+
+    --custom-volume-accent: rgba(137, 72, 178, 0.65);
+    --custom-toggle-bg: rgba(97, 72, 145, 0.65);
+} */
+
+/* Dark theme */
+:root {
+    --custom-bg-body: #1a202c;
+    --custom-bg-player: #3b3f4e;
+    --custom-border-color: #6c757d;
+    --custom-shadow-color: rgba(0, 0, 0, 0.15);
+
+    --custom-top-bg: #4b5162;
+    --custom-cover-bg: #2c313a;
+    --custom-middle-bg: #3b3f4e;
+    --custom-queue-bg: #4b5162;
+    --custom-queue-text: #e9ecef;
+    --custom-album-text: #e9ecef;
+
+    --custom-progress-bg: #6c757d;
+    --custom-progress-fill: #9a00e8;
+    --custom-time-color: #e9ecef;
+
+    --custom-button-bg: #6c757d;
+    --custom-button-bg-disabled: #6c757d;
+    --custom-button-hover: #9a00e8;
+    --custom-button-icon: #e9ecef;
+
+    --custom-volume-accent: #9a00e8;
+    --custom-toggle-bg: #2c313a;
+}
+
+.cover-img {
+    height:120px; 
+    width:120px; 
+    border-radius:8px;
+}
+
+.music-player {
+    width: 300px;
+    height: 480px;
+    background-color: var(--custom-bg-player);
+    border: 1px solid var(--custom-border-color);
+    border-radius: 1px 8px 8px 1px;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--custom-shadow-color);
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 998;
+}
+
+.music-player.hidden {
+    left: -300px;
+    display: flex !important;
+}
+
+.top-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--custom-top-bg);
+    color: #fff;
+}
+
+.cover {
+    width: 120px;
+    height: 120px;
+    background-color: var(--custom-cover-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.middle-section {
+    flex: 1;
+    display: flex;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    background-color: var(--custom-middle-bg);
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.album-title {
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--custom-album-text);
+}
+
+.queue {
+    flex: 1;
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    background: var(--custom-queue-bg);
+    border-radius: 6px;
+    overflow-y: auto;
+    color: var(--custom-queue-text);
+    max-height: 120px; /* adjust as needed */
+}
+
+#player-list {
+    padding: 0;
+    padding-left: 1rem;
+    margin: 0;
+}
+
+#player-list li {
+    cursor: pointer;
+    border-bottom: 1px solid var(--custom-border-color);
+    color: var(--custom-queue-text);
+    margin-bottom: 3px;
+}
+
+#player-list li:hover,
+#player-list li.current-track {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+button:disabled,
+button:disabled:hover {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+}
+
+.progress-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--custom-time-color);
+    padding: 0 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2px;
+}
+
+.progress-bar-container {
+    height: 8px;
+    background-color: var(--custom-progress-bg);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 auto 5px;
+    width: calc(100% - 2rem);
+    cursor: pointer;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--custom-progress-fill);
+    transition: width 0.2s;
+}
+
+.d-flex.align-items-center.justify-content-between.px-3.pt-2.pb-3 {
+    background-color: var(--custom-middle-bg);
+}
+
+.btn.btn-success.btn-sm {
+    background-color: var(--custom-button-bg);
+    border: none;
+    color: var(--custom-button-icon);
+}
+
+.btn.btn-success.btn-sm:hover {
+    background-color: var(--custom-button-hover);
+}
+
+.volume-slider input {
+    writing-mode: bt-lr;
+    appearance: slider-vertical;
+    width: 6px;
+    height: 60px;
+    margin-left: 12px;
+    accent-color: var(--custom-volume-accent);
+}
+
+.slide-toggle {
+    position: fixed;
+    left: 300px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 60px;
+    background: var(--custom-toggle-bg);
+    border: 1px solid var(--custom-border-color);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: left 0.3s ease;
+    color: #fff;
+}
+
+.music-player.hidden+.slide-toggle {
+    left: 1px;
+    border-radius: 0 6px 6px 0;
+}
+
+.ytp-button.ytp-autonav-toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ytp-autonav-toggle-button-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--custom-button-bg-disabled);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.ytp-autonav-toggle[aria-checked="true"] .ytp-autonav-toggle-button-container {
+    background-color: var(--custom-button-hover);
+}
+
+.ytp-autonav-toggle-button-container i {
+    color: var(--custom-button-icon);
+    font-size: 14px;
+}
