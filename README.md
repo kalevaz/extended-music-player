@@ -41,7 +41,7 @@ The interface includes:
 
 ## 🙌 Credits
 
-Made with 💚 by [MorsaKingg](https://github.com/MorsaKingg)  
+Made with 💚 by [kalevaz](https://github.com/kalevaz)  
 Inspired by [Not Simple Player](https://github.com/yurixahri/not-simple-player)
 Powered by HFS + jsmediatags + sweet vanilla JavaScript
 
