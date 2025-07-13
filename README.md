@@ -20,6 +20,7 @@ The interface includes:
 - Album queue list
 - Time and progress visualizers
 - Playback controls and autoplay toggle
+- Colors are customisable via CSS variables in the plugin files
 
 ## 🛠️ Requirements
 
@@ -42,7 +43,15 @@ The interface includes:
 ## 🙌 Credits
 
 Made with 💚 by [kalevaz](https://github.com/kalevaz)  
-Inspired by [Not Simple Player](https://github.com/yurixahri/not-simple-player)
-Powered by HFS + jsmediatags + sweet vanilla JavaScript
+Inspired by [Not Simple Player](https://github.com/yurixahri/not-simple-player)  
+Powered by HFS + jsmediatags + JavaScript
 
 ---
+
+## **Please report any issues or suggestions!** You are also free to modify the code to your liking and upload any changes you may see fit via pull requests.
+  
+**Please forgive any mistakes I may have made, I'm still new at web development and I would love to make the player even better, hence why I'm open to suggestions and pull requests.**
+
+[Test it out by yourself on my maidcore archive](https://archive.maidcore.es)
+
+[![Preview with player open](https://i.imgur.com/dpkPyfK.png)](https://archive.maidcore.es)
