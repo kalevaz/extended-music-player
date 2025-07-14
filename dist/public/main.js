@@ -186,9 +186,15 @@ function play(filename, fromQueue = false) {
     });
 
     currentSongIndex = songUrls.findIndex(url => url === filename);
-
+    let fullPath = filename;
     if (!playingFromQueue) {
-        currentSongIndex = songUrls.findIndex(url => url === window.location + encodeURI(filename));
+        let fullUrlName = window.location + encodeURIComponent(filename);
+        fullUrlName = fullUrlName.replace(/%2F/g, '/'); // This fixes playing the song from the search menu since slashes are encoded too, and the full URL cant be found
+
+        currentSongIndex = songUrls.findIndex(url => url === fullUrlName);
+
+        fullPath = `${window.location.origin}${window.location.pathname}${encodeURIComponent(filename)}`;
+        fullPath = fullPath.replace(/%2F/g, '/'); // Also fixes the search menu song playing
     }
 
     if (currentSongIndex >= 0) {
@@ -196,13 +202,13 @@ function play(filename, fromQueue = false) {
         currentItem.classList.add('current-track');
     }
     
-    audio.src = filename;
+    audio.src = fullPath;
 
     const progressFill = document.getElementById('progressFill');
     progressFill.style.background = 'repeating-linear-gradient(-45deg, #e9ecef 0, #e9ecef 10px, #707070 10px, #707070 20px)';
-
+    
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', filename, true);
+    xhr.open('GET', fullPath, true);
     xhr.responseType = 'blob';
     xhr.onprogress = e => {
         const percent = (e.loaded / e.total) * 100;
@@ -224,7 +230,11 @@ function play(filename, fromQueue = false) {
 
                     if (tags.picture) {
                         const { data, format } = tags.picture;
-                        const base64String = btoa(String.fromCharCode(...data));
+                        let binary = '';
+                        for (let i = 0; i < data.length; i++) {
+                            binary += String.fromCharCode(data[i]);
+                        }
+                        const base64String = btoa(binary);
                         coverEl.innerHTML = `<img src="data:${format};base64,${base64String}" alt="Cover" class="cover-img">`;
                     }
 
@@ -234,17 +244,24 @@ function play(filename, fromQueue = false) {
                 },
                 onError: error => {
                     console.error('Tag read error:', error);
-                    titleEl.textContent = filename;
-                    artistEl.textContent = '(Unknown artist)';
-                    albumEl.textContent = '(Unknown album)';
+                    progressFill.style.background = 'red';
+                    titleEl.textContent = 'Tag Error';
+                    artistEl.textContent = 'Tag Error';
+                    albumEl.textContent = 'Tag Error';
                     coverEl.innerHTML = `<i class="fas fa-music"></i>`;
-                    audio.play();
-                    playPauseBtn.querySelector('i').className = 'fas fa-pause';
+                    currentTime.textContent = '0:00';
+                    duration.textContent = '0:00';
                 }
             });
         } else {
             console.error('Failed to fetch audio blob:', xhr.statusText);
-            progressFill.style.background = 'linear-gradient(to right, #707070 0%, #e9ecef 100%)';
+            progressFill.style.background = 'red';
+            titleEl.textContent = 'Error Fetching Audio';
+            artistEl.textContent = 'Error';
+            albumEl.textContent = 'Error';
+            coverEl.innerHTML = `<i class="fas fa-music"></i>`;
+            currentTime.textContent = '0:00';
+            duration.textContent = '0:00';
         }
     };
     xhr.send();

@@ -39,6 +39,7 @@ The interface includes:
 | OGG    | `.ogg`     |
 | FLAC   | `.flac`    |
 | M4A    | `.m4a`     |
+maybe more?
 
 ## 🙌 Credits
 
