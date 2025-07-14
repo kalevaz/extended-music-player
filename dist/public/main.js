@@ -30,7 +30,7 @@ HFS.onEvent('beforeHeader', () => `
 
     <div class="progress-time">
       <span id="currentTime">0:00</span>
-      <span id="duration">3:45</span>
+      <span id="duration">0:00</span>
     </div>
     <div class="progress-bar-container">
       <div class="progress-fill" id="progressFill"></div>
@@ -158,6 +158,8 @@ function play(filename, fromQueue = false) {
     const queueList = document.getElementById('player-list');
     const audio = document.getElementById('audio');
     const icon = slideToggle.querySelector('i');
+    const currentTime = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
 
     player.classList.remove('hidden');
     icon.className = 'fas fa-chevron-left';
@@ -165,8 +167,11 @@ function play(filename, fromQueue = false) {
     titleEl.textContent = "Preparing...";
     artistEl.textContent = "Preparing...";
     albumEl.textContent = "Preparing...";
+    currentTime.textContent = "0:00";
+    durationEl.textContent = "0:00";
     coverEl.innerHTML = `<i class="fas fa-music"></i>`;
     queueList.innerHTML = '';
+
     songUrls = [];
 
     const anchors = document.querySelectorAll('a[id^=":r"]');
@@ -213,10 +218,6 @@ function play(filename, fromQueue = false) {
     xhr.onprogress = e => {
         const percent = (e.loaded / e.total) * 100;
         progressFill.style.width = `${percent}%`;
-
-        const remainingTime = Math.floor((e.total - e.loaded) / e.total * audio.duration);
-        const remainingSeconds = Math.floor(remainingTime / 60);
-        currentTime.textContent = `-0:${remainingSeconds.toString().padStart(2, '0')}`;
     };
     xhr.onload = () => {
         if (xhr.status === 200) {
@@ -239,6 +240,7 @@ function play(filename, fromQueue = false) {
                     }
 
                     progressFill.style.background = 'var(--custom-progress-fill)';
+                    
                     audio.play();
                     playPauseBtn.querySelector('i').className = 'fas fa-pause';
                 },
@@ -250,7 +252,9 @@ function play(filename, fromQueue = false) {
                     albumEl.textContent = 'Tag Error';
                     coverEl.innerHTML = `<i class="fas fa-music"></i>`;
                     currentTime.textContent = '0:00';
-                    duration.textContent = '0:00';
+
+                    audio.play();
+                    playPauseBtn.querySelector('i').className = 'fas fa-pause';
                 }
             });
         } else {
