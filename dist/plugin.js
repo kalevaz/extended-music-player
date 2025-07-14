@@ -1,4 +1,5 @@
-exports.version = 1.1
+exports.repo = "kalevaz/extended-music-player"
+exports.version = 1.2
 exports.description = "Extended music player"
 exports.apiRequired = 8.1
 exports.frontend_js = [
@@ -7,4 +8,5 @@ exports.frontend_js = [
 ]
 exports.frontend_css = [
     'style.css',
+    "user-custom.css", // Modify this to your liking
 ]

@@ -22,6 +22,7 @@ HFS.onEvent('beforeHeader', () => `
         <div class="album-title" id="album">(Album name)</div>
         <div class="queue" id="queue">
             <ol id="player-list">
+                <li>Queue</li>
             </ol>
         </div>
       </div>
@@ -43,7 +44,7 @@ HFS.onEvent('beforeHeader', () => `
       </div>
 
       <div class="d-flex align-items-center ms-auto gap-3">
-        <button class="ytp-button ytp-autonav-toggle" title="Autoplay On/Off" aria-checked="false" id="autoplayToggle">
+        <button title="Autoplay On/Off" aria-checked="false" id="autoplayToggle">
             <i class="fas fa-stop"></i>
         </button>
 
@@ -88,7 +89,7 @@ function initPlayer() {
         autoplayToggle.setAttribute('aria-label', `Autoplay is ${isChecked ? 'off' : 'on'}`);
         const icon = autoplayToggle.querySelector('i');
         icon.className = isChecked ? 'fas fa-stop' : 'fas fa-forward';
-        console.log("Autoplay is", !isChecked ? "ON" : "OFF");
+        // console.log("Autoplay is", !isChecked ? "ON" : "OFF");
     });
 
     document.getElementById('volumeSlider').addEventListener('input', e => {
@@ -106,13 +107,13 @@ function initPlayer() {
     });
 
     document.getElementById('nextSong').addEventListener('click', () => {
-        if (playingFromQueue && songUrls.length > 0 && currentSongIndex < songUrls.length - 1) {
+        if (songUrls.length > 0 && currentSongIndex < songUrls.length - 1) {
             play(songUrls[currentSongIndex + 1], true);
         }
     });
 
     document.getElementById('previousSong').addEventListener('click', () => {
-        if (playingFromQueue && songUrls.length > 0 && currentSongIndex > 0) {
+        if (songUrls.length > 0 && currentSongIndex > 0) {
             play(songUrls[currentSongIndex - 1], true);
         }
     });
@@ -138,7 +139,7 @@ function initPlayer() {
         const autoplayToggle = document.getElementById('autoplayToggle');
         const autoplayEnabled = autoplayToggle.getAttribute('aria-checked') === 'true';
 
-        if (autoplayEnabled && playingFromQueue && songUrls.length > 0 && currentSongIndex < songUrls.length - 1) {
+        if (autoplayEnabled && songUrls.length > 0 && currentSongIndex < songUrls.length - 1) {
             play(songUrls[currentSongIndex + 1], true);
         }
     });
@@ -146,7 +147,6 @@ function initPlayer() {
 
 function play(filename, fromQueue = false) {
     playingFromQueue = fromQueue;
-    updateControlsBasedOnSource();
 
     const player = document.getElementById('player');
     const slideToggle = document.getElementById('slideToggle');
@@ -179,7 +179,6 @@ function play(filename, fromQueue = false) {
 
         const li = document.createElement('li');
         li.textContent = displayName;
-        li.style.cursor = 'pointer';
         li.addEventListener('click', () => play(fullUrl, true));
         queueList.appendChild(li);
 
@@ -187,11 +186,35 @@ function play(filename, fromQueue = false) {
     });
 
     currentSongIndex = songUrls.findIndex(url => url === filename);
+
+    if (!playingFromQueue) {
+        currentSongIndex = songUrls.findIndex(url => url === window.location + encodeURI(filename));
+    }
+
+    if (currentSongIndex >= 0) {
+        const currentItem = queueList.children[currentSongIndex];
+        currentItem.classList.add('current-track');
+    }
+    
     audio.src = filename;
 
-    fetch(filename)
-        .then(response => response.blob())
-        .then(blob => {
+    const progressFill = document.getElementById('progressFill');
+    progressFill.style.background = 'repeating-linear-gradient(-45deg, #e9ecef 0, #e9ecef 10px, #707070 10px, #707070 20px)';
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', filename, true);
+    xhr.responseType = 'blob';
+    xhr.onprogress = e => {
+        const percent = (e.loaded / e.total) * 100;
+        progressFill.style.width = `${percent}%`;
+
+        const remainingTime = Math.floor((e.total - e.loaded) / e.total * audio.duration);
+        const remainingSeconds = Math.floor(remainingTime / 60);
+        currentTime.textContent = `-0:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const blob = xhr.response;
             window.jsmediatags.read(blob, {
                 onSuccess: tag => {
                     const tags = tag.tags;
@@ -205,6 +228,7 @@ function play(filename, fromQueue = false) {
                         coverEl.innerHTML = `<img src="data:${format};base64,${base64String}" alt="Cover" class="cover-img">`;
                     }
 
+                    progressFill.style.background = 'var(--custom-progress-fill)';
                     audio.play();
                     playPauseBtn.querySelector('i').className = 'fas fa-pause';
                 },
@@ -218,38 +242,14 @@ function play(filename, fromQueue = false) {
                     playPauseBtn.querySelector('i').className = 'fas fa-pause';
                 }
             });
-        })
-        .catch(error => {
-            console.error('Failed to fetch audio blob:', error);
-        });
+        } else {
+            console.error('Failed to fetch audio blob:', xhr.statusText);
+            progressFill.style.background = 'linear-gradient(to right, #707070 0%, #e9ecef 100%)';
+        }
+    };
+    xhr.send();
 
     audio.volume = document.getElementById('volumeSlider').value / 100; // The html holds the default value which is 25
-}
-
-function updateControlsBasedOnSource() {
-    const prevBtn = document.getElementById('previousSong');
-    const nextBtn = document.getElementById('nextSong');
-    const autoplayBtn = document.getElementById('autoplayToggle');
-
-    const queueOnlyTip = 'This only works when playing from the album queue (click any song in the queue list)';
-
-    if (!playingFromQueue) {
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        autoplayBtn.disabled = true;
-
-        prevBtn.title = queueOnlyTip;
-        nextBtn.title = queueOnlyTip;
-        autoplayBtn.title = queueOnlyTip;
-    } else {
-        prevBtn.disabled = false;
-        nextBtn.disabled = false;
-        autoplayBtn.disabled = false;
-
-        prevBtn.title = 'Previous Song';
-        nextBtn.title = 'Next Song';
-        autoplayBtn.title = 'Autoplay On/Off';
-    }
 }
 
 function formatTime(seconds) {

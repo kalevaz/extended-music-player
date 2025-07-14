@@ -54,4 +54,4 @@ Powered by HFS + jsmediatags + JavaScript
 
 [Test it out by yourself on my maidcore archive](https://archive.maidcore.es)
 
-[![Preview with player open](https://i.imgur.com/dpkPyfK.png)](https://archive.maidcore.es)
+[![Preview with player open](https://i.imgur.com/fXbz2RA.png)](https://archive.maidcore.es)
