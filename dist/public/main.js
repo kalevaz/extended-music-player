@@ -142,8 +142,6 @@ function initPlayer() {
             play(songUrls[currentSongIndex + 1], true);
         }
     });
-
-
 }
 
 function play(filename, fromQueue = false) {
@@ -224,6 +222,8 @@ function play(filename, fromQueue = false) {
         .catch(error => {
             console.error('Failed to fetch audio blob:', error);
         });
+
+    audio.volume = document.getElementById('volumeSlider').value / 100; // The html holds the default value which is 25
 }
 
 function updateControlsBasedOnSource() {
