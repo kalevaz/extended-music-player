@@ -1,11 +1,27 @@
-HFS.onEvent('afterEntryName', ({ entry, h }) =>
-    /mp3|wav|aac|ogg|flac|m4a/.test(entry.ext) &&
-    HFS.h('button', {
-        id: `play-song-${entry.n}`, // unique ID, optional for styling or debugging
-        className: 'fas fa-play fa-sm',
-        title: 'Play this song on the player at the left',
-        onClick: () => play(entry.n)
-    }))
+// This section adds buttons to the entries for playing
+if (HFS.getPluginConfig().openOnButtonClick) {
+    HFS.onEvent('afterEntryName', ({ entry, h }) =>
+        /mp3|wav|aac|ogg|flac|m4a/.test(entry.ext) &&
+        HFS.h('button', {
+            id: `play-song-${entry.n}`, // unique ID, optional for styling or debugging
+            className: 'fas fa-play fa-sm',
+            title: 'Play this song on the player at the left',
+            onClick: () => play(entry.n)
+        }))
+}
+
+// This sections makes the player reproduce whatever audio is being clicked
+if (HFS.getPluginConfig().openOnFileClick) {
+    document.addEventListener('click', ev => {
+        const entry = HFS.elementToEntry(ev.target)
+        if (entry && /mp3|wav|aac|ogg|flac|m4a/.test(entry.ext)) {
+            play(entry.n)
+            ev.preventDefault()
+        } else if (entry && HFS.fileShow(entry)) {
+            ev.preventDefault()
+        }
+    })
+}
 
 HFS.onEvent('beforeHeader', () => `
 <div class="music-player hidden" id="player">
@@ -206,12 +222,12 @@ function play(filename, fromQueue = false) {
         const currentItem = queueList.children[currentSongIndex];
         currentItem.classList.add('current-track');
     }
-    
+
     audio.src = fullPath;
 
     const progressFill = document.getElementById('progressFill');
     progressFill.style.background = 'repeating-linear-gradient(-45deg, #e9ecef 0, #e9ecef 10px, #707070 10px, #707070 20px)';
-    
+
     const xhr = new XMLHttpRequest();
     xhr.open('GET', fullPath, true);
     xhr.responseType = 'blob';
@@ -240,7 +256,7 @@ function play(filename, fromQueue = false) {
                     }
 
                     progressFill.style.background = 'var(--custom-progress-fill)';
-                    
+
                     audio.play();
                     playPauseBtn.querySelector('i').className = 'fas fa-pause';
                 },
