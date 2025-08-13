@@ -1,5 +1,5 @@
 exports.repo = "kalevaz/extended-music-player"
-exports.version = 1.4
+exports.version = 1.41
 exports.description = "Extended music player"
 exports.apiRequired = 8.1
 exports.frontend_js = [

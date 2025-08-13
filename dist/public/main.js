@@ -13,14 +13,15 @@ if (HFS.getPluginConfig().openOnButtonClick) {
 // This sections makes the player reproduce whatever audio is being clicked
 if (HFS.getPluginConfig().openOnFileClick) {
     document.addEventListener('click', ev => {
-        const entry = HFS.elementToEntry(ev.target)
+        // Ignore clicks on menu buttons
+        if (ev.target.closest('.file-menu-button')) return;
+
+        const entry = HFS.elementToEntry(ev.target);
         if (entry && /mp3|wav|aac|ogg|flac|m4a/.test(entry.ext)) {
-            play(entry.n)
-            ev.preventDefault()
-        } else if (entry && HFS.fileShow(entry)) {
-            ev.preventDefault()
+            play(entry.n);
+            ev.preventDefault();
         }
-    })
+    });
 }
 
 HFS.onEvent('beforeHeader', () => `
